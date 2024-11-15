@@ -72,10 +72,12 @@ public class Display {
     public static void addSandwich(Order order) {
         int sandwichOption = promptInt("1) Signature Sandwiches\n2) Custom Sandwich");
         if (sandwichOption == 1) {
-            int signatureSandwich = promptInt("1) BLT\n2) Philly Cheese");
+            int signatureSandwich = promptInt("1) BLT\n2) Philly Cheese\n3) Sameem's Subway\n4) Year Up Special");
             switch (signatureSandwich) {
                 case 1 -> order.add(new BLT());
                 case 2 -> order.add(new PhillyCheeseSteak());
+                case 3 -> order.add(new SameemsSub());
+                case 4 -> order.add(new YearUpSpecial());
             }
         } else {
             order.add(createCustomSandwich());
