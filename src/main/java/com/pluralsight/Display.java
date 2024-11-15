@@ -89,11 +89,11 @@ public class Display {
      */
     public static Sandwich createCustomSandwich() {
         boolean running = true;
-        int bread = promptInt("Please choose your bread:\n1)White\n2)Wheat\n3)Wrap");
-        int size = promptInt("Please choose your size:\n1)4\"\n2)8\"\n3)12\"");
+        int bread = promptInt("Please choose your bread:\n1) White\n2) Wheat\n3) Rye\n4) Wrap");
+        int size = promptInt("Please choose your size:\n1) 4\"\n2) 8\"\n3) 12\"");
         ArrayList<String> toppings = new ArrayList<>();
         while (running) {
-            int choice = promptInt("Add toppings:\n1) Add Meat\n2) Add Cheese\n3) Add Other Toppings\n4) Select Sauces\n5) Add Sides\n0) Cancel Order");
+            int choice = promptInt("Add toppings:\n1) Add Meat\n2) Add Cheese\n3) Add Other Toppings\n4) Select Sauces\n5) Add Sides\n0) Finish Sandwich");
             switch (choice) {
                 case 1 -> addMeat(toppings);
                 case 2 -> addCheese(toppings);
@@ -141,7 +141,7 @@ public class Display {
      * Opens a selection of toppings to the user to add to the input ArrayList
      */
     public static void addToppings(ArrayList<String> toppings) {
-        int choice = promptInt("1) American\n2) Provolone\n3) Cheddar\n4) Swiss");
+        int choice = promptInt("1) Lettuce\n2) Peppers\n3) Onions\n4) Tomatoes\n5) Jalapenos\n6) Cucumbers\n7) Pickles\n8) Guacamole\n9) Mushrooms");
         switch (choice) {
             case 1 -> toppings.add("lettuce");
             case 2 -> toppings.add("peppers");
