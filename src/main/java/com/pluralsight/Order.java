@@ -1,10 +1,15 @@
 package com.pluralsight;
 
-public class Order {
-    Sandwich sandwich;
-    int amountChips;
-    String drink;
-    String drinkSize;
-    String chips;
+import java.util.ArrayList;
 
+public class Order {
+    private ArrayList<Orderable> cart = new ArrayList<>();
+
+    public void add(Orderable item) {
+        cart.add(item);
+    }
+
+    public ArrayList<Orderable> getCart() {
+        return new ArrayList<>(cart);
+    }
 }

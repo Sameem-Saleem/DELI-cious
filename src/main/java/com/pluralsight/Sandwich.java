@@ -2,26 +2,35 @@ package com.pluralsight;
 
 import java.util.ArrayList;
 
-public class Sandwich {
-    private final String bread;
-    private final int inches;
+public class Sandwich implements Orderable {
+    private final Bread bread;
+    private final Inches inches;
     private final Boolean extraMeat;
     private final Boolean extraCheese;
     private final Boolean toasted;
     private final ArrayList<String> toppings;
 
-    public Sandwich(String bread, int inches, ArrayList<String> toppings, Boolean extraMeat, Boolean extraCheese, Boolean toasted) {
-        this.bread = bread;
-        this.inches = inches;
+    public Sandwich(int bread, int inches, ArrayList<String> toppings, int extraMeat, int extraCheese, int toasted) {
+        switch (bread) {
+            case 1 -> this.bread = Bread.WHITE;
+            case 2 -> this.bread = Bread.WHEAT;
+            case 3 -> this.bread = Bread.RYE;
+            default -> this.bread = Bread.WRAP;
+        }
+        switch (inches) {
+            case 1 -> this.inches = Inches.FOUR;
+            case 2 -> this.inches = Inches.EIGHT;
+            default -> this.inches = Inches.TWELVE;
+        }
+        this.extraCheese = extraCheese == 1;
+        this.extraMeat = extraMeat == 1;
+        this.toasted = toasted == 1;
         this.toppings = toppings;
-        this.extraMeat = extraMeat;
-        this.extraCheese = extraCheese;
-        this.toasted = toasted;
     }
 
     public double getPrice() {
-        double totalPrice = this.inches == 4 ? 5.50 : this.inches == 8 ? 7.00 : this.inches == 12 ? 8.50 : 0;
-        double toppingMultiplier = (double) this.inches / 4;
+        double totalPrice = this.inches.getPrice();
+        double toppingMultiplier = this.inches.getMultiplier();
         for (String topping : this.toppings) {
             switch (topping) {
                 case "steak", "ham", "salami", "roast beef", "chicken", "bacon" -> totalPrice += toppingMultiplier;
@@ -31,5 +40,58 @@ public class Sandwich {
         totalPrice += this.extraCheese ? 0.30 * toppingMultiplier : 0;
         totalPrice += this.extraMeat ? 0.50 * toppingMultiplier : 0;
         return this.toasted ? totalPrice * 1.15 : totalPrice;
+    }
+
+    enum Sauce {
+        MAYO, MUSTARD, KETCHUP, RANCH, THOUSAND_ISLAND, VINAIGRETTE;
+
+        @Override
+        public String toString() {
+            return this.name();
+        }
+    }
+
+    enum Side {
+        AU_JUS, SAUCE;
+
+        @Override
+        public String toString() {
+            return this.name();
+        }
+    }
+
+    enum Bread {
+        WHITE, WHEAT, RYE, WRAP;
+
+        @Override
+        public String toString() {
+            return this.name();
+        }
+    }
+
+    enum Inches {
+        FOUR(5.50, "4\"", 1), EIGHT(7.00, "8\"", 2), TWELVE(8.50, "12\"", 3);
+        private final String displayName;
+        private final double price;
+        private final double multiplier;
+
+        Inches(double price, String displayName, double multiplier) {
+            this.displayName = displayName;
+            this.price = price;
+            this.multiplier = multiplier;
+        }
+
+        public double getPrice() {
+            return this.price;
+        }
+
+        public double getMultiplier() {
+            return this.multiplier;
+        }
+
+        @Override
+        public String toString() {
+            return this.displayName;
+        }
     }
 }
