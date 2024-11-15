@@ -22,6 +22,11 @@ public class Chips implements Orderable {
         return 1.50;
     }
 
+    @Override
+    public String toString() {
+        return this.brand.name();
+    }
+
     enum Brand {
         TAKIS, DORITOS, LAYS;
 

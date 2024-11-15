@@ -39,7 +39,16 @@ public class Sandwich implements Orderable {
         }
         totalPrice += this.extraCheese ? 0.30 * toppingMultiplier : 0;
         totalPrice += this.extraMeat ? 0.50 * toppingMultiplier : 0;
-        return this.toasted ? totalPrice * 1.15 : totalPrice;
+        return totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder(this.inches + " " + this.bread + " Sandwich\n");
+        for (String topping : this.toppings) {
+            result.append(" - ").append(topping).append("\n");
+        }
+        return result.toString().substring(0, result.length() - 1);
     }
 
     enum Sauce {

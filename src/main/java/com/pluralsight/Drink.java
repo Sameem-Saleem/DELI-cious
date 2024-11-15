@@ -32,7 +32,7 @@ public class Drink implements Orderable {
 
     @Override
     public String toString() {
-        return this.size + " " + this.size;
+        return this.size + " " + this.brand;
     }
 
     enum Size {
