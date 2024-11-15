@@ -1,21 +1,33 @@
 package com.pluralsight;
 
 public class Chips implements Orderable {
-    private String brand;
+    /**
+     * The brand of chip.
+     */
+    private final Brand brand;
 
     public Chips(int brand) {
         switch (brand) {
-            case 1 -> this.brand = "Takis";
-            case 2 -> this.brand = "Doritos";
-            case 3 -> this.brand = "Lays";
+            case 1 -> this.brand = Brand.TAKIS;
+            case 2 -> this.brand = Brand.DORITOS;
+            default -> this.brand = Brand.LAYS;
         }
     }
 
     public String getBrand() {
-        return this.brand;
+        return this.brand.name();
     }
 
     public double getPrice() {
         return 1.50;
+    }
+
+    enum Brand {
+        TAKIS, DORITOS, LAYS;
+
+        @Override
+        public String toString() {
+            return this.name();
+        }
     }
 }

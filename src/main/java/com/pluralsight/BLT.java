@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BLT extends Sandwich {
     public BLT() {
-        super("white", 8, getToppings(), false, false, true);
+        super(1, 2, getToppings(), 2, 2, 1);
     }
 
     private static ArrayList<String> getToppings() {

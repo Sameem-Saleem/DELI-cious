@@ -43,6 +43,20 @@ public class Display {
     }
 
     /**
+     * Drink adding screen, provides terminal interface for user to choose drinks.
+     */
+    public static void addDrink(Order order) {
+        order.add(new Drink(promptInt("1) Coca Cola\n2) Mountain Dew\n3) Pepsi\n 4) Fanta"), promptInt("1) Small\n2) Medium\n3) Large")));
+    }
+
+    /**
+     * Chips adding screen, provides terminal interface for user to add chips.
+     */
+    public static void addChips(Order order) {
+        order.add(new Chips(promptInt("1) Takis\n2) Doritos\n3) Lays")));
+    }
+
+    /**
      * Sandwich adding screen, provides terminal interface for user to choose signature sandwich.
      */
     public static void addSandwich(Order order) {
@@ -57,6 +71,7 @@ public class Display {
             order.add(createCustomSandwich());
         }
     }
+
     /**
      * Directs user in creating custom sandwich through terminal interface, returning the sandwich object.
      */
@@ -68,9 +83,9 @@ public class Display {
         while (running) {
             int choice = promptInt("Add toppings:\n1) Add Meat\n2) Add Cheese\n3) Add Other Toppings\n4) Select Sauces\n0) Cancel Order");
             switch (choice) {
-                case 1 -> addSandwich(currentOrder);
-                case 2 -> addDrink(currentOrder);
-                case 3 -> addChips(currentOrder);
+                case 1 -> addSandwich(toppings);
+                case 2 -> addDrink(toppings);
+                case 3 -> addChips(toppings);
                 case 4 -> checkout();
                 case 0 -> running = false;
             }

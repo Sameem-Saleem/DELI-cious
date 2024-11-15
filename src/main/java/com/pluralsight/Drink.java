@@ -4,9 +4,18 @@ public class Drink implements Orderable {
     private final Brand brand;
     private final Size size;
 
-    public Drink(String brand, String size) {
-        this.brand = Brand.valueOf(brand);
-        this.size = Size.valueOf(size);
+    public Drink(int brand, int size) {
+        switch (brand) {
+            case 1 -> this.brand = Brand.COCA_COLA;
+            case 2 -> this.brand = Brand.MOUNTAIN_DEW;
+            case 3 -> this.brand = Brand.PEPSI;
+            default -> this.brand = Brand.FANTA;
+        }
+        switch (size) {
+            case 1 -> this.size = Size.SMALL;
+            case 2 -> this.size = Size.MEDIUM;
+            default -> this.size = Size.LARGE;
+        }
     }
 
     public String getBrand() {
