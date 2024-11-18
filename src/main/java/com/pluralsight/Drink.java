@@ -14,7 +14,7 @@ public class Drink implements Orderable {
      * Constructs a {@code Drink} given integers that represent attribute states.
      *
      * @param brand Represents the brand of drink, 1 = Coca Cola, 2 = Mountain Dew, 3 = Pepsi, 4 = Fanta.
-     * @param size Represents the size of drink, affecting price, 1 = Small, 2 = Medium, 3 = Large.
+     * @param size  Represents the size of drink, affecting price, 1 = Small, 2 = Medium, 3 = Large.
      */
     public Drink(int brand, int size) {
         switch (brand) {

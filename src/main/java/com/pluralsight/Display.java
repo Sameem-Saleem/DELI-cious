@@ -85,7 +85,8 @@ public class Display {
                 case 4 -> order.add(new YearUpSpecial());
             }
         } else {
-            order.add(createCustomSandwich());
+            Sandwich customSandwich = createCustomSandwich();
+            order.add(customSandwich);
         }
     }
 
