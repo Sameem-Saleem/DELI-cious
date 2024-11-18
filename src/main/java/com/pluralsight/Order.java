@@ -21,6 +21,7 @@ public class Order {
 
     /**
      * Adds {@code Orderable} item into cart
+     * @param item Object implementing {@code Orderable} interface to add to cart.
      */
     public void add(Orderable item) {
         cart.add(item);
@@ -44,7 +45,7 @@ public class Order {
     /**
      * Iterates through the {@code Orderables} in the {@code cart} and exports/saves an HTML document. The document contains the time, date, item names, item prices, and total price.
      */
-    public String printReceipt() throws IOException {
+    public void printReceipt() throws IOException {
         String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("hhmmss"));
         String fileName = "receipts/" + currentDate + "-" + currentTime + ".html";

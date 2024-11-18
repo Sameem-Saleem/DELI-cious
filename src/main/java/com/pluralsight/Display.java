@@ -1,5 +1,10 @@
 package com.pluralsight;
 
+import com.pluralsight.signature_sandwiches.BLT;
+import com.pluralsight.signature_sandwiches.PhillyCheeseSteak;
+import com.pluralsight.signature_sandwiches.SameemsSub;
+import com.pluralsight.signature_sandwiches.YearUpSpecial;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -51,14 +56,19 @@ public class Display {
      * Drink adding screen, provides terminal interface for user to choose drinks.
      */
     public static void addDrink(Order order) {
-        order.add(new Drink(promptInt("1) Coca Cola\n2) Mountain Dew\n3) Pepsi\n4) Fanta"), promptInt("1) Small\n2) Medium\n3) Large")));
+        int drinkBrand = promptInt("1) Coca Cola\n2) Mountain Dew\n3) Pepsi\n4) Fanta");
+        int drinkSize = promptInt("1) Small\n2) Medium\n3) Large");
+        Drink drink = new Drink(drinkBrand, drinkSize);
+        order.add(drink);
     }
 
     /**
      * Chips adding screen, provides terminal interface for user to add chips.
      */
     public static void addChips(Order order) {
-        order.add(new Chips(promptInt("1) Takis\n2) Doritos\n3) Lays")));
+        int chipsBrand = promptInt("1) Takis\n2) Doritos\n3) Lays");
+        Chips chips = new Chips(chipsBrand);
+        order.add(chips);
     }
 
     /**
@@ -103,8 +113,10 @@ public class Display {
         int toast = promptInt("Would you like it toasted?:\n1) Yes\n2) No");
         return new Sandwich(bread, size, toppings, extraMeat, extraCheese, toast);
     }
+
     /**
      * Prompts the user to select one of the toppings in the {@code selection} parameter, then returns adds that topping.
+     *
      * @param selection What toppings to prompt the user to select.
      */
     public static void promptAdd(String[] selection, ArrayList<String> toppings) {
