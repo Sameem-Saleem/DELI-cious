@@ -33,7 +33,7 @@ public class Order {
      */
     public String getReceipt() {
         StringBuilder receipt = new StringBuilder();
-        receipt.append("___________________________________________\n\n                 DELIcious\n                45 Milk St.\n         855-932-7871\n Guest Check                Individual Order\nTakeout                           Ticket 13\n Server : Sameem              Year Up United\n___________________________________________\n");
+        receipt.append("___________________________________________\n\n                 DELIcious\n                45 Milk St.\n               855-932-7871\n Guest Check                Individual Order\nTakeout                           Ticket 13\n Server : Sameem              Year Up United\n___________________________________________\n");
         double totalPrice = 0;
         for (Orderable item : cart) {
             totalPrice += item.getPrice();
