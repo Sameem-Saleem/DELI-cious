@@ -1,6 +1,12 @@
 package com.pluralsight;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Order {
@@ -36,17 +42,25 @@ public class Order {
     }
 
     /**
-     * Iterates through the {@code Orderables} in the {@code cart} and returns an HTML document. The document contains the time, date, item names, item prices, and total price.
+     * Iterates through the {@code Orderables} in the {@code cart} and exports/saves an HTML document. The document contains the time, date, item names, item prices, and total price.
      */
-    public String printReceipt(String date, String time) {
+    public String printReceipt() throws IOException {
+        String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("hhmmss"));
+        String fileName = "receipts/" + currentDate + "-" + currentTime + ".html";
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+
         StringBuilder receipt = new StringBuilder();
-        receipt.append("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><style>h1, h2 {padding: 0;margin: 0;}.split {display:flex;justify-content: space-between;width: 95%;}</style>\n</head><body style=\"background-color: black; display:flex; justify-content: center;\";><div style=\"background-color: white; width:40rem; padding-top: 4rem; padding-bottom: 12rem; display:flex; justify-content: center; flex-direction:column; align-items: center;\"><h1>DELIcious!</h1><h2>45 Milk St.</h2><h2>855-932-7871</h2><div class=\"split\"><h2>Guest Check</h2><h2>Individual Order</h2></div><div class=\"split\"><h2>Takeout</h2>\n<h2>Ticket " + "13" + "</h2>\n</div><div class=\"split\"><h2>Server : Sameem</h2><h2>Year Up United</h2></div><div class=\"split\">\n<h2>").append(time).append("</h2>\n<h2>DATE ").append(date).append("</h2>\n</div><h2>__________________________________________________</h2>");
+        String dateString = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+        String timeString = LocalTime.now().format(DateTimeFormatter.ofPattern("hh/ss"));
+        receipt.append("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><style>h1, h2 {padding: 0;margin: 0;}.split {display:flex;justify-content: space-between;width: 95%;}</style>\n</head><body style=\"background-color: black; display:flex; justify-content: center;\";><div style=\"background-color: white; width:40rem; padding-top: 4rem; padding-bottom: 12rem; display:flex; justify-content: center; flex-direction:column; align-items: center;\"><h1>DELIcious!</h1><h2>45 Milk St.</h2><h2>855-932-7871</h2><div class=\"split\"><h2>Guest Check</h2><h2>Individual Order</h2></div><div class=\"split\"><h2>Takeout</h2>\n<h2>Ticket " + "13" + "</h2>\n</div><div class=\"split\"><h2>Server : Sameem</h2><h2>Year Up United</h2></div><div class=\"split\">\n<h2>").append(timeString).append("</h2>\n<h2>DATE ").append(dateString).append("</h2>\n</div><h2>__________________________________________________</h2>");
         double totalPrice = 0;
         for (Orderable item : cart) {
             totalPrice += item.getPrice();
             receipt.append("<div class=\"split\">\n<h2 style=\"white-space: pre-line\">").append(item).append("</h2>").append("<h2>").append(df.format(item.getPrice())).append("</h2></div>");
         }
         receipt.append("<h2>----------------------------------------------------------------------------</h2><div class=\"split\"><h2></h2><h1>Check Total $ ").append(df.format(totalPrice)).append("</h1>\n</div><br><br><h2>Thanks for joining us at DELIcious.</h2><h2>Stay updated at...</h2><h2>yearup.org</h2><h2>NY Style Deli</h2></div></body></html>\n");
-        return receipt.toString();
+        writer.write(receipt.toString());
+        writer.close();
     }
 }

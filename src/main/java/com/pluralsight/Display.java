@@ -1,11 +1,6 @@
 package com.pluralsight;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -122,22 +117,12 @@ public class Display {
     }
 
     /**
-     * Ledger menu loop, provides terminal interface for viewing data file.
+     * Checkout option, provides terminal interface for saving data file.
      */
     public static void checkout(Order order) throws IOException {
         int confirm = promptInt("1) Confirm\n2) Cancel");
         if (confirm == 1) {
-            String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-            String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("hhmmss"));
-            String fileName = "receipts/" + currentDate + "-" + currentTime + ".html";
-
-            String dateString = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yy"));
-            String timeString = LocalTime.now().format(DateTimeFormatter.ofPattern("hh/ss"));
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
-            writer.write(order.printReceipt(dateString, timeString));
-            writer.newLine();
-            writer.close();
+            order.printReceipt();
         }
     }
 
