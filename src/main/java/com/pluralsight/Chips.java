@@ -13,11 +13,6 @@ public class Chips implements Orderable {
             default -> this.brand = Brand.LAYS;
         }
     }
-
-    public String getBrand() {
-        return this.brand.name();
-    }
-
     public double getPrice() {
         return 1.50;
     }

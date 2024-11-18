@@ -3,12 +3,18 @@ package com.pluralsight;
 import java.util.ArrayList;
 
 public class Sandwich implements Orderable {
+    public static final String[] MEATS = new String[]{"steak", "ham", "salami", "chicken", "roast beef", "bacon"};
+    public static final String[] CHEESES = new String[]{"american", "provolone", "cheddar", "swiss"};
+    public static final String[] VEGGIES = new String[]{"lettuce", "peppers", "onions", "tomatoes", "jalapenos", "cucumbers", "pickles", "guacamole", "mushrooms"};
+    public static final String[] SAUCES = new String[]{"mayo", "mustard", "ketchup", "ranch", "thousand islands", "vinaigrette"};
+    public static final String[] EXTRAS = new String[]{"au jus", "sauce"};
     private final Bread bread;
     private final Inches inches;
     private final Boolean extraMeat;
     private final Boolean extraCheese;
     private final Boolean toasted;
     private final ArrayList<String> toppings;
+
 
     public Sandwich(int bread, int inches, ArrayList<String> toppings, int extraMeat, int extraCheese, int toasted) {
         switch (bread) {

@@ -18,14 +18,6 @@ public class Drink implements Orderable {
         }
     }
 
-    public String getBrand() {
-        return this.brand.displayName;
-    }
-
-    public Size getSize() {
-        return this.size;
-    }
-
     public double getPrice() {
         return this.size.getPrice();
     }
