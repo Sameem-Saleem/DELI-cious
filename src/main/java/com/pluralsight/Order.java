@@ -54,7 +54,7 @@ public class Order {
 
         StringBuilder receipt = new StringBuilder();
         String dateString = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yy"));
-        String timeString = LocalTime.now().format(DateTimeFormatter.ofPattern("hh/mm"));
+        String timeString = LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm"));
         receipt.append("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><style>h1, h2 {padding: 0;margin: 0;}.split {display:flex;justify-content: space-between;width: 95%;}</style>\n</head><body style=\"background-color: black; display:flex; justify-content: center;\";><div style=\"background-color: white; width:40rem; padding-top: 4rem; padding-bottom: 12rem; display:flex; justify-content: center; flex-direction:column; align-items: center;\"><h1>DELIcious!</h1><h2>45 Milk St.</h2><h2>855-932-7871</h2><div class=\"split\"><h2>Guest Check</h2><h2>Individual Order</h2></div><div class=\"split\"><h2>Takeout</h2>\n<h2>Ticket " + "13" + "</h2>\n</div><div class=\"split\"><h2>Server : Sameem</h2><h2>Year Up United</h2></div><div class=\"split\">\n<h2>").append(timeString).append("</h2>\n<h2>DATE ").append(dateString).append("</h2>\n</div><h2>__________________________________________________</h2>");
         double totalPrice = 0;
         for (Orderable item : cart) {
