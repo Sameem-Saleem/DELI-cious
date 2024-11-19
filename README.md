@@ -1,5 +1,5 @@
 # DELI-cious
-This application can help track all receipts and orders for a deli, with a simple terminal interface including multiple menus to streamline user-experience.
+This application can help track all receipts and orders for a deli, with a simple terminal interface including multiple menus to streamline user-experience, and export options that are viewable and printable.
 
 Note that information entered must follow the guidelines expressed in the documentation and this `README.md`, otherwise, errors may occur.
 
@@ -34,13 +34,8 @@ Suggested software:
 - [Java JDK](https://www.oracle.com/th/java/technologies/downloads)
 - [JetBrains IntelliJ](https://www.jetbrains.com/idea/download/)
 
-
-If you have **previous receipts** you want to import, you must **add them manually** into the **receipts** folder, with the file named as the following:
-`yyyyMMdd-hhmmss.txt`
-
-Notes:
-- The **time** *must be* in `HH:MM:SS` 24 hour format
-
+Class Hierarchy:
+![Hierarchy](https://media.discordapp.net/attachments/219982898550276096/1308188946467000510/image.png?ex=673d0965&is=673bb7e5&hm=6cebb19e29b2665fb56533ed51d71d577ac18ce763f34fae14fbcb1409a19ccd&=&format=webp&quality=lossless&width=2160&height=1080)
 
 
 ## Home Screen
@@ -76,29 +71,43 @@ The custom sandwich option prompts the user to select a type of bread, a size fo
 
 This information is then appended in to the order, where it will be shown on the next iteration of the Order Screen.
 
+The following is related to custom sandwiches:
 
+#### Bread
+The user may choose between White, Wheat, Rye, and Wrap
+#### Size
+The user may choose between 4", 8", and 12"
+- The sandwich costs 5.50, 7.00, and 8.50 respectively based on size
+#### Toppings
+The user may choose between lettuce, peppers, onions, tomatoes, jalapenos, cucumbers, mayo, mustard, ketchup, ranch, thousand islands, vinaigrette, pickles, guacamole, mushrooms, au jus, and sauce.
+The user may choose meats of steak, ham, chicken, salami, bacon, and roast beef - they can add extra meat at the end of the selection process
+- These cost 1.00 * inches/4, plus 0.50 * inches/4 for extra meat
+The user may choose cheeses of american, provolone, cheddar, and swiss - they can add extra cheese at the end of the selection process
+- These cost 0.75 * inches/4, plus 0.30 * inches/4 for extra cheese
 
 ### Add Drink
 This option prompts the user with a brand of drink and a cup size.
-
+- The drink costs 2.00, 2.50, and 3.00 if it's Small, Medium, or Large, respectively.
 This information is then appended in to the order, where it will be shown on the next iteration of the Order Screen.
 
 
 
 ### Add Chips
 This option prompts the user with a brand of chips.
-
+- Adding chips costs a flat 1.50
 This information is then appended in to the order, where it will be shown on the next iteration of the Order Screen.
 
 
 
 ### Checkout
-This option creates a new file with the name in the format of yyyyMMdd-hhmmss.txt in the /receipts folder, writing to it the current order's receipt, which is the price followed by the item for every individual item currently in the order.
+This option creates a new HTML file with the name in the format of yyyyMMdd-hhmmss.html in the /receipts folder, writing to it the current order's receipt, which is the price followed by the item for every individual item currently in the order.
 
+The following is what the receipt document looks like: 
+![receipt](https://media.discordapp.net/attachments/219982898550276096/1308355249236611092/image.png?ex=673da447&is=673c52c7&hm=582a2ca7d630e4082266953dbcf20640ea5b0e42757003ca24028114939e6bf1&=&format=webp&quality=lossless&width=694&height=1184)
 **Note that additions may not be written to the file if this option is not reached** or a misinput causes a crash in the program.
 
 
-### Exit
+### Cancel Order
 This option saves changes to the file and closes the program.
 
 **Note that additions may not be written to the file if this option is not reached** or a misinput causes a crash in the program.
@@ -112,3 +121,4 @@ The following code segment I encountered while programming this application was 
 
 ### Restricting Input
 I found that by restricting input to only integers - and having them correlate to a specific item in my program, I was much less prone to errors, since the user was selecting as opposed to inputting.
+![Interesting](https://media.discordapp.net/attachments/219982898550276096/1308355894911959040/image.png?ex=673da4e1&is=673c5361&hm=6e8b0007c6fecf9093f199cd4824433ec730474999ead390b2a8276267832952&=&format=webp&quality=lossless&width=1964&height=1186)
